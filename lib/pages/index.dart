@@ -11,15 +11,16 @@ class Index extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.only(
           top: Tools.statusBarHeight + 19.0,
-          left: 12.0,
-          right: 12.0,
         ),
         child: Flex(
           direction: Axis.vertical,
           children: [
-            ChangeCity(),
             Container(
-              margin: EdgeInsets.only(top: 15.0),
+              child: ChangeCity(),
+              margin: EdgeInsets.only(left: 12.0, right: 12.0),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 12.0, right: 12.0, top: 15.0),
               child: Search(),
             ),
             Container(
