@@ -3,11 +3,9 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterapp/config/colors.dart';
 
 class CusSwiper extends StatefulWidget {
-  final imgList = [
-    "https://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/3263826.jpg?max_age=2592000",
-    "https://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/3244487.jpg?max_age=2592000",
-    "https://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/3263462.jpg?max_age=2592000",
-  ];
+  final imgList;
+
+  CusSwiper({Key key, @required this.imgList}) : super(key: key);
 
   @override
   _CusSwiperState createState() => _CusSwiperState();
@@ -41,7 +39,7 @@ class _CusSwiperState extends State<CusSwiper> {
             ),
           );
         },
-        itemCount: 3,
+        itemCount: widget.imgList.length,
         pagination: SwiperPagination(
           margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
           builder: DotSwiperPaginationBuilder(
