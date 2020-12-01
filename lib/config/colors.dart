@@ -4,6 +4,8 @@ class ConfigColors {
   static final Color c1C1C1E = ColorsFormate.hexColor(0x1C1C1E);
   static final Color cFFDA00 = ColorsFormate.hexColor(0xFFDA00);
   static final Color cFFFFFF = ColorsFormate.hexColor(0xFFFFFF);
+  static final Color cFFEEDD = ColorsFormate.hexColor(0xFFEEDD);
+  static final Color cFF8100 = ColorsFormate.hexColor(0xFF8100);
 
   static final Color oc1C1C1E = ColorsFormate.hexColor(0x1C1C1E, alpha: 0.45);
   static final Color ocFFFFFF = ColorsFormate.hexColor(0x1C1C1E, alpha: 0.1);

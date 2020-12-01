@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterapp/components/cus_images.dart';
+import 'package:flutterapp/components/cus_text.dart';
+import 'package:flutterapp/config/colors.dart';
 import 'package:flutterapp/utils/adaptive.dart';
 
 class CusMenu extends StatefulWidget {
@@ -15,8 +17,7 @@ class _CusMenuState extends State<CusMenu> {
   addItem(List<Widget> _list, int index) {
     _list.add(
       Container(
-        width: Adaptive.setWidth(70.7),
-        margin: EdgeInsets.only(top: 12.0),
+        width: Adaptive.setWidth(70.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -26,7 +27,11 @@ class _CusMenuState extends State<CusMenu> {
               height: Adaptive.setWidth(45.0),
               types: ImagesTypes.asset,
             ),
-            Text(widget.tabs[index]["name"])
+            CusText(
+              content: widget.tabs[index]["name"],
+              fontSize: Adaptive.setSp(11.0),
+              color: ConfigColors.oc1C1C1E,
+            )
           ],
         ),
       ),
@@ -45,11 +50,20 @@ class _CusMenuState extends State<CusMenu> {
       }
     }
     colume.add(Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: rowOne,
     ));
-    colume.add(Row(
-      children: rowTwo,
-    ));
+    if (rowTwo.length > 0) {
+      colume.add(
+        Container(
+          margin: EdgeInsets.only(top: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: rowTwo,
+          ),
+        ),
+      );
+    }
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(left: 12.0, right: 12.0),
@@ -72,11 +86,20 @@ class _CusMenuState extends State<CusMenu> {
       }
     }
     colume.add(Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: rowOne,
     ));
-    colume.add(Row(
-      children: rowTwo,
-    ));
+    if (rowTwo.length > 0) {
+      colume.add(
+        Container(
+          margin: EdgeInsets.only(top: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: rowTwo,
+          ),
+        ),
+      );
+    }
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(left: 12.0, right: 12.0),
@@ -88,23 +111,22 @@ class _CusMenuState extends State<CusMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 50.0),
-      child: Container(
-        height: widget.tabs.length > widget.num
-            ? Adaptive.setHeight(200.0)
-            : Adaptive.setHeight(100.0),
-        child: new Swiper(
-          itemCount: widget.tabs.length ~/ widget.num,
-          loop: false,
-          itemBuilder: (context, index) {
-            if (index == 0) {
-              return showItemOne();
-            } else {
-              return showItemTwo();
-            }
-          },
-        ),
+    return Container(
+      height: widget.tabs.length > widget.num
+          ? Adaptive.setHeight(113.0)
+          : Adaptive.setHeight(52.0),
+      child: new Swiper(
+        itemCount: (widget.tabs.length < widget.num
+            ? widget.num
+            : widget.tabs.length ~/ widget.num),
+        loop: false,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return showItemOne();
+          } else {
+            return showItemTwo();
+          }
+        },
       ),
     );
   }
