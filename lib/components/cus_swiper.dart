@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterapp/config/colors.dart';
+import 'package:flutterapp/utils/adaptive.dart';
 
 class CusSwiper extends StatefulWidget {
   final imgList;
@@ -15,7 +16,7 @@ class _CusSwiperState extends State<CusSwiper> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120.0,
+      height: Adaptive.setHeight(120.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(4.0),
