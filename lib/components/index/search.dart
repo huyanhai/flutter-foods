@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/components/cus_images.dart';
 import 'package:flutterapp/components/cus_text.dart';
 import 'package:flutterapp/config/colors.dart';
+import 'package:flutterapp/utils/adaptive.dart';
 
 enum SearchTypes { enable, disable }
 
@@ -20,7 +21,7 @@ class _SearchState extends State<Search> {
 
   Widget searchDisable() {
     return Container(
-      height: 32.0,
+      height: Adaptive.setWidth(32.0),
       alignment: Alignment.centerLeft,
       decoration: new BoxDecoration(
         color: Colors.black12,
@@ -34,12 +35,12 @@ class _SearchState extends State<Search> {
           CusImages(
             url: "assets/images/search.png",
             types: ImagesTypes.asset,
-            width: 20.0,
-            height: 20.0,
+            width: Adaptive.setWidth(20.0),
+            height: Adaptive.setWidth(20.0),
           ),
           CusText(
             content: "麻辣龙虾",
-            fontSize: 12.0,
+            fontSize: Adaptive.setSp(12.0),
             color: ConfigColors.oc1C1C1E,
           )
         ],
@@ -53,7 +54,7 @@ class _SearchState extends State<Search> {
         children: [
           Expanded(
             child: Container(
-              height: 32.0,
+              height: Adaptive.setWidth(32.0),
               alignment: Alignment.centerLeft,
               decoration: new BoxDecoration(
                 color: Colors.black12,
@@ -69,8 +70,8 @@ class _SearchState extends State<Search> {
                     child: CusImages(
                       url: "assets/images/search.png",
                       types: ImagesTypes.asset,
-                      width: 20.0,
-                      height: 20.0,
+                      width: Adaptive.setWidth(20.0),
+                      height: Adaptive.setWidth(20.0),
                     ),
                   ),
                   Expanded(
@@ -108,7 +109,7 @@ class _SearchState extends State<Search> {
               margin: EdgeInsets.only(left: 13.0),
               child: CusText(
                 content: "取消",
-                fontSize: 13.0,
+                fontSize: Adaptive.setSp(13.0),
               ),
             ),
           )

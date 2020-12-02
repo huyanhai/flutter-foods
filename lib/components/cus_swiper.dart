@@ -16,7 +16,7 @@ class _CusSwiperState extends State<CusSwiper> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Adaptive.setHeight(120.0),
+      height: Adaptive.setWidth(120.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(4.0),

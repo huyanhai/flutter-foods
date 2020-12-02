@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/components/cus_menu.dart';
@@ -6,7 +8,7 @@ import 'package:flutterapp/components/index/change_city.dart';
 import 'package:flutterapp/components/index/city_top.dart';
 import 'package:flutterapp/components/index/search.dart';
 import 'package:flutterapp/config/colors.dart';
-import 'package:flutterapp/utils/tools.dart';
+import 'package:flutterapp/utils/adaptive.dart';
 
 class Index extends StatelessWidget {
   final imgList = [
@@ -30,41 +32,100 @@ class Index extends StatelessWidget {
     ScreenUtil.init(context,
         designSize: Size(375, 667), allowFontScaling: false);
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Flex(
-            direction: Axis.vertical,
-            children: [
-              Container(
-                color: ConfigColors.cFFFFFF,
-                child: ChangeCity(),
-                padding: EdgeInsets.only(left: 12.0, right: 12.0),
-              ),
-              Container(
-                color: ConfigColors.cFFFFFF,
-                padding: EdgeInsets.only(left: 12.0, right: 12.0, top: 15.0),
-                child: Search(),
-              ),
-              Container(
-                color: ConfigColors.cFFFFFF,
-                padding: EdgeInsets.only(top: 12.0),
-                child: CusSwiper(imgList: imgList),
-              ),
-              Container(
-                color: ConfigColors.cFFFFFF,
-                padding: EdgeInsets.only(bottom: 12.0),
-                child: CusMenu(tabs: tabs),
-              ),
-              Container(
-                color: ConfigColors.cFFFFFF,
-                padding: EdgeInsets.only(left: 12.0, right: 12.0),
-                margin: EdgeInsets.only(top: 1.0),
-                child: CityTop(),
-              ),
-            ],
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsets.only(top: 50.0),
           ),
-        ),
+          SliverToBoxAdapter(
+            child: Container(
+              color: ConfigColors.cFFFFFF,
+              child: ChangeCity(),
+              padding: EdgeInsets.only(
+                left: 12.0,
+                right: 12.0,
+              ),
+            ),
+          ),
+          SliverAppBar(
+            pinned: true,
+            flexibleSpace: Container(
+              color: ConfigColors.cFFFFFF,
+              padding: EdgeInsets.only(
+                left: 12.0,
+                right: 12.0,
+              ),
+              child: Search(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              color: ConfigColors.cFFFFFF,
+              padding: EdgeInsets.only(
+                top: 12.0,
+              ),
+              child: CusSwiper(imgList: imgList),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              color: ConfigColors.cFFFFFF,
+              padding: EdgeInsets.only(
+                bottom: 12.0,
+              ),
+              child: CusMenu(tabs: tabs),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              color: ConfigColors.cFFFFFF,
+              padding: EdgeInsets.only(
+                left: 12.0,
+                right: 12.0,
+              ),
+              margin: EdgeInsets.only(top: 1.0),
+              child: CityTop(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 1000.0,
+              color: Colors.red,
+              child: Text("color"),
+            ),
+          ),
+        ],
       ),
     );
+  }
+}
+
+class _SliverAppBar extends SliverPersistentHeaderDelegate {
+  _SliverAppBar(
+      {@required this.minHeight,
+      @required this.maxHeight,
+      @required this.child});
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(covariant _SliverAppBar oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }

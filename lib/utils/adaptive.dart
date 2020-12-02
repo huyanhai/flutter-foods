@@ -16,18 +16,18 @@ class Adaptive {
     return ScreenUtil().setSp(value);
   }
 
-  ///设备的像素密度
-  // static double get pixelRatio => ScreenUtil.pixelRatio;
+  //设备的像素密度
+  static double get pixelRatio => ScreenUtil().pixelRatio;
 
   // ///当前设备宽度 dp
-  // static double get screenWidth => ScreenUtil.screenWidthDp;
+  // static double get screenWidth => ScreenUtil().screenWidthDp;
 
-  // ///当前设备高度 dp
-  // static get screenHeight => ScreenUtil.screenHeightDp;
+  // // ///当前设备高度 dp
+  // static get screenHeight => ScreenUtil().screenHeightDp;
 
   // ///底部安全区距离 dp
-  // static get bottomBarHeight => ScreenUtil.bottomBarHeight;
+  static get bottomBarHeight => ScreenUtil().bottomBarHeight;
 
   // ///状态栏高度 dp 刘海屏会更高
-  // static get statusBarHeight => ScreenUtil.statusBarHeight;
+  static get statusBarHeight => ScreenUtil().statusBarHeight;
 }
